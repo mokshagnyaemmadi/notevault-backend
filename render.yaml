@@ -1,7 +1,7 @@
 services:
   - type: web
     name: notevault-backend
-    env: java
+    runtime: java  # <--- THIS IS THE FIX
     plan: free
     buildCommand: "mvnw clean install"
     startCommand: "java -jar target/notevault-backend-0.0.1-SNAPSHOT.jar"
