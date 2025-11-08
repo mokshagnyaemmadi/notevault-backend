@@ -62,11 +62,22 @@ public class WebSecurityConfig {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173"));
+
+        // --- THIS IS THE FIX ---
+        // We are adding your live Vercel URL to the list of allowed origins.
+        configuration.setAllowedOrigins(List.of(
+            "http://localhost:5173", 
+            "https://notevault-frontend-steel.vercel.app"
+        ));
+        // ---------------------
+
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
         configuration.setAllowCredentials(true);
+
+        // This line is now correct and has no hyphen
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
         source.registerCorsConfiguration("/**", configuration);
         return source;
     }
