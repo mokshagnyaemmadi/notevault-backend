@@ -14,7 +14,7 @@ FROM eclipse-temurin:21-jdk-alpine
 WORKDIR /app
 
 # Copy the .jar file from the 'build' stage
-COPY --from=build /app/target/notevault-backend-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/notevault-0.0.1-SNAPSHOT.jar app.jar
 
 # Run the application
 ENTRYPOINT ["java","-jar","app.jar"]
